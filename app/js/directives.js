@@ -8,4 +8,7 @@ angular.module('myApp.directives', []).
     return function(scope, elm, attrs) {
       elm.text(version);
     };
-  }]);
+  }])
+    .directive('menu', [function(){
+        return {restrict: 'E', templateUrl: 'partials/header.html'}
+    }]);

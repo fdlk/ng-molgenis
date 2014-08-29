@@ -2,13 +2,13 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
+angular.module('molgenis.controllers', [])
     .controller('MenuCtrl', ['$scope', function ($scope) {
 
     }])
     .controller('DataExplorer', ['$scope', 'Entity', 'EntityMetadata',
         function ($scope, Entity, EntityMetadata) {
-            $scope.entityNames = ['ASE', 'Genes', 'StudyDataRequest'];
+            $scope.entityNames = ['ASE', 'Genes', 'StudyDataRequest', 'MolgenisUser'];
             $scope.attributes = [];
             $scope.$watch('selectedEntityName', function () {
                 EntityMetadata.query({name: $scope.selectedEntityName}, function (metaData) {
@@ -25,6 +25,11 @@ angular.module('myApp.controllers', [])
             });
             $scope.isAttributeSelected = function(name){
                 return $scope.attributeSelection[name] === true;
+            }
+            $scope.selectAllAttributes = function(select){
+                $.each($scope.attributeSelection, function(key, value){
+                    $scope.attributeSelection[key] = select;
+                })
             }
             $scope.selectedEntityName = 'Genes';
         }])

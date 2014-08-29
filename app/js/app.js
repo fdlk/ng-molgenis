@@ -8,7 +8,7 @@ angular.module('molgenis', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'myApp.controllers',
+  'molgenis.controllers',
   'angularBootstrapNavTree'
 ]).
 config(['$routeProvider', function($routeProvider) {

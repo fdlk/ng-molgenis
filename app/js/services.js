@@ -1,8 +1,6 @@
 'use strict';
 
-/* Services */
-
-angular.module('myApp.services', [])
+angular.module('molgenis.services', [])
     .value('version', '0.1')
     .factory('Entity', ['$resource',
         function ($resource) {

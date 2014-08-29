@@ -3,8 +3,11 @@
 /* Controllers */
 
 angular.module('molgenis.controllers', [])
-    .controller('MenuCtrl', ['$scope', function ($scope) {
-
+    .controller('MenuCtrl', ['$scope', '$location', function ($scope, $location) {
+        $scope.isActive = function (viewLocation) {
+            console.log('|'+viewLocation+'|', '|'+$location.path()+'|');
+            return viewLocation === $location.path();
+        };
     }])
     .controller('DataExplorer', ['$scope', 'Entity', 'EntityMetadata',
         function ($scope, Entity, EntityMetadata) {

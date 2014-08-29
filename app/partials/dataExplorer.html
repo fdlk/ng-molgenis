@@ -9,28 +9,22 @@
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading">Entity selection:</div>
+                <div class="panel-heading">Selection:</div>
                 <div class="panel-body">
-                    <select class="form-control" ng-model="selectedEntityName">
-                        <option ng-repeat="name in entityNames">{{name}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Data item selection:</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <button type="button" class="btn btn-default col-md-6"
-                                ng-click="selectAllAttributes(true)">Select all
-                        </button>
-                        <button type="button" class="btn btn-default col-md-6"
-                                ng-click="selectAllAttributes(false)">Deselect all
-                        </button>
+                    <div class="form-group">
+                        <label>Entity</label>
+                        <select class="form-control" ng-model="selectedEntityName">
+                            <option ng-repeat="name in entityNames">{{name}}</option>
+                        </select>
                     </div>
-                    <div class="checkbox" ng-repeat="(attribute, selected) in attributeSelection">
-                        <label>
-                            <input type="checkbox" ng-model="attributeSelection[attribute]">{{attribute}}
-                        </label>
+                    <div class="form-group">
+                        <label>Attributes</label><br/>
+                        <select multiple ng-model="selectedAttributes"
+                                ng-options="attribute for attribute in attributes" class="form-control">
+                        </select>
+                        <button type="button" class="btn btn-default form-control"
+                                ng-click="selectAllAttributes()">Select all
+                        </button>
                     </div>
                 </div>
             </div>
@@ -38,13 +32,11 @@
         <div class="span12" style="overflow: auto">
             <table class="table table-condensed table-striped table-hover">
                 <tr>
-                    <th ng-repeat="(name, meta) in entityMetadata.attributes"
-                        ng-show="attributeSelection[name]">{{name}}
-                    </th>
+                    <th ng-repeat="attribute in selectedAttributes">{{attribute}}</th>
                 </tr>
                 <tr ng-repeat="entity in entities.items">
-                    <td ng-repeat="(name, meta) in entityMetadata.attributes" ng-show="attributeSelection[name]">
-                        {{entity[name] || '&nbsp;'}}
+                    <td ng-repeat="attribute in selectedAttributes">
+                        {{entity[attribute] || '&nbsp;'}}
                     </td>
                 </tr>
             </table>

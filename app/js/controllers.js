@@ -13,27 +13,23 @@ angular.module('molgenis.controllers', [])
         function ($scope, Entity, EntityMetadata) {
             $scope.entityNames = ['ASE', 'Genes', 'StudyDataRequest', 'MolgenisUser'];
             $scope.attributes = [];
+            $scope.selectAllAttributes = function(){
+                $scope.selectedAttributes = $scope.attributes;
+            }
             $scope.$watch('selectedEntityName', function () {
                 EntityMetadata.query({name: $scope.selectedEntityName}, function (metaData) {
-                    var attributeSelection = {};
+                    var attributes = [];
                     $scope.entityMetadata = metaData;
-                    $.each(metaData.attributes, function (key, value) {
+                    $.each($scope.entityMetadata.attributes, function (key, value) {
                         if(key !== 'href'){
-                            attributeSelection[key] = true;
+                            attributes.push(key);
                         }
                     });
-                    $scope.attributeSelection = attributeSelection;
+                    $scope.attributes = attributes;
+                    $scope.selectAllAttributes();
                 });
                 $scope.entities = Entity.query({name: $scope.selectedEntityName});
             });
-            $scope.isAttributeSelected = function(name){
-                return $scope.attributeSelection[name] === true;
-            }
-            $scope.selectAllAttributes = function(select){
-                $.each($scope.attributeSelection, function(key, value){
-                    $scope.attributeSelection[key] = select;
-                })
-            }
             $scope.selectedEntityName = 'Genes';
         }])
     .controller('MyCtrl2', ['$scope', function ($scope) {

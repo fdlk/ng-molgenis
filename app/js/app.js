@@ -8,8 +8,7 @@ angular.module('molgenis', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'molgenis.controllers',
-  'angularBootstrapNavTree'
+  'molgenis.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/#dataExplorer', {templateUrl: 'partials/dataExplorer.html', controller: 'DataExplorer'});

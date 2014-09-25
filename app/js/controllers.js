@@ -11,12 +11,14 @@ angular.module('molgenis.controllers', [])
     }])
     .controller('DataExplorer', ['$scope', 'Entity', 'EntityMetadata',
         function ($scope, Entity, EntityMetadata) {
-            $scope.entityNames = ['ASE', 'Genes', 'StudyDataRequest', 'MolgenisUser'];
+            $scope.entityNames = ['ASE', 'Gene', 'e_CeliacSprue', 'MolgenisUser'];
             $scope.attributes = [];
+            $scope.query = {};
             $scope.selectAllAttributes = function(){
                 $scope.selectedAttributes = $scope.attributes;
             }
             $scope.$watch('selectedEntityName', function () {
+                $scope.query = {};
                 EntityMetadata.query({name: $scope.selectedEntityName}, function (metaData) {
                     var attributes = [];
                     $scope.entityMetadata = metaData;
@@ -30,8 +32,8 @@ angular.module('molgenis.controllers', [])
                 });
                 $scope.entities = Entity.query({name: $scope.selectedEntityName});
             });
-            $scope.selectedEntityName = 'Genes';
+            $scope.selectedEntityName = 'Gene';
         }])
-    .controller('MyCtrl2', ['$scope', function ($scope) {
+    .controller('LoginCtrl', ['$scope', function ($scope) {
 
     }]);

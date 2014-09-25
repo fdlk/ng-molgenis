@@ -43,4 +43,16 @@
         </div>
     </div>
 
+    Query:{{query|json}}
+
+    <form role="form" class="form-horizontal">
+        <div data-mol-filter
+             ng-repeat="attribute in selectedAttributes"
+             label='attribute'
+             type="entityMetadata.attributes[attribute].fieldType"
+             query="query"
+             name="attribute">
+        </div>
+    </form>
+
 </div> <!-- /container -->

@@ -13,5 +13,6 @@ angular.module('molgenis', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/dataExplorer', {templateUrl: 'partials/dataExplorer.html', controller: 'DataExplorer'});
   $routeProvider.when('/contact', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/dataExplorer'});
+      $routeProvider.when('/filterdemo', {templateUrl: 'partials/filterdemo.html', controller: 'FilterDemoCtrl'});
+  $routeProvider.otherwise({redirectTo: '/filterdemo'});
 }]);

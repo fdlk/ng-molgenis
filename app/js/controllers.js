@@ -9,6 +9,10 @@ angular.module('molgenis.controllers', [])
             return viewLocation === $location.path();
         };
     }])
+    .controller('FilterDemoCtrl', ['$scope', '$location', function ($scope, $location) {
+        $scope.attribute={name: "dateOfBirth", label:"Date of Birth.", type:"LONG"};
+        $scope.query = {};
+    }])
     .controller('DataExplorer', ['$scope', 'Entity', 'EntityMetadata',
         function ($scope, Entity, EntityMetadata) {
             $scope.entityNames = ['ASE', 'Gene', 'e_CeliacSprue', 'MolgenisUser'];

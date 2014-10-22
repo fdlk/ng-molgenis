@@ -33,7 +33,7 @@ angular.module('molgenis.directives', []).
                         scope.controlType = "fromto";
                         scope.criteria = [{}];
                         scope.plus = function(){
-                            scope.criteria[scope.criteria.length-1].operator = 'AND'
+                            scope.criteria[scope.criteria.length-1].operator = 'OR'
                             scope.criteria.push({});
                         }
                         scope.minus = function(index){

@@ -10,7 +10,7 @@ angular.module('molgenis.controllers', [])
         };
     }])
     .controller('FilterDemoCtrl', ['$scope', '$location', function ($scope, $location) {
-        $scope.attribute={name: "dateOfBirth", label:"Date of Birth.", type:"LONG"};
+        $scope.attribute={name: "dateOfBirth", label:"Date of Birth.", type:"LONG", options:["label1", "label2", "label3"]};
         $scope.query = {};
     }])
     .controller('DataExplorer', ['$scope', 'Entity', 'EntityMetadata',

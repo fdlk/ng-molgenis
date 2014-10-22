@@ -17,7 +17,8 @@ angular.module('molgenis.directives', []).
                 label: '=',
                 type: '=',
                 name: '=',
-                query: '='
+                query: '=',
+                options: '='
             },
             link: function (scope) {
                 switch(scope.type) {

@@ -1,41 +1,49 @@
 <div ng-repeat="criterium in criteria">
     <div class="form-group">
         <label class="control-label col-sm-3"><span ng-if="$first">{{label}}({{type}})</span></label>
-        <div class="col-sm-6">
         <!-- from-to directive here
-            <div class="row">
-                <div class="col-sm-2">
-                    <label class="control-label">From</label>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="control-label">From</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" ng-model="criterium.from"/>
+                    </div>
+                    <div class="col-sm-2"><label class="control-label">to</label></div>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" ng-model="criterium.to"/>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" ng-model="criterium.from"/>
-                </div>
-                <div class="col-sm-2"><label class="control-label">to</label></div>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" ng-model="criterium.to"/>
-                </div>
-            </div> -->
-            <div class="row">
-                <ui-select multiple ng-model="criterium.selected" class="form-control" >
-                    <ui-select-match placeholder="Select">{{$item}}</ui-select-match>
-                    <ui-select-choices repeat="option in options | filter:$select.search">
-                        {{option}}
-                    </ui-select-choices>
-                </ui-select>
-            </div>
+            </div>-->
+
+        <div ng-class="criterium.selected.length > 1 ? 'col-sm-5 col-lg-6': 'col-sm-7'">
+            <ui-select multiple ng-model="criterium.selected" class="form-control" >
+                <ui-select-match placeholder="Select">{{$item}}</ui-select-match>
+                
+                <ui-select-choices repeat="option in options | filter:$select.search">
+                    {{option}}
+                </ui-select-choices>
+            </ui-select>
         </div>
-        <div class="col-sm-3">
+        <div ng-if="criterium.selected.length > 1" class="col-sm-2 col-lg-1">
+            <select class="form-control" ng-model="criterium.selectedOperator">
+                <option>AND</option>
+                <option>OR</option>
+            </select>
+        </div>
+        <div class="col-sm-2 col-lg-1">
             <div class="btn btn-default btn-xs" ng-click="plus();" ng-show="$last"><span class="glyphicon glyphicon-plus"></span></div>
             <div class="btn btn-default btn-xs" ng-click="minus($index);" ng-show="criteria.length > 1"><span class="glyphicon glyphicon-minus"></span></div>
         </div>
     </div>
     <div class="form-group" ng-if="!$last">
-        <div class="col-sm-2 col-sm-offset-3">
-            <select class="form-control" ng-model="criterium.operator" ng-if="criterium.operatorEditable">
+        <div class="col-sm-2 col-sm-offset-3 col-lg-1">
+            <select class="form-control" ng-model="criterium.operator" ng-if="operatorEditable">
                 <option>AND</option>
                 <option>OR</option>
             </select>
-            <p class="form-control-static" ng-if="!criterium.operatorEditable">{{criterium.operator}}</p>
+            <p class="form-control-static" ng-if="!operatorEditable">{{criterium.operator}}</p>
         </div>
     </div>
 </div>

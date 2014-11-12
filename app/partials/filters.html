@@ -1,5 +1,5 @@
 <div ng-repeat="criterium in criteria">
-    <div class="form-group">
+    <div class="col-md-12 form-group">
         <label class="control-label col-sm-3"><span ng-if="$first">{{label}}({{type}})</span></label>
         <!-- from-to directive here
             <div class="col-sm-6">
@@ -17,21 +17,33 @@
                 </div>
             </div>-->
 
-        <div ng-class="criterium.selected.length > 1 ? 'col-sm-5 col-lg-6': 'col-sm-7'">
-            <ui-select multiple ng-model="criterium.selected" class="form-control" >
-                <ui-select-match placeholder="Select">{{$item}}</ui-select-match>
-                
-                <ui-select-choices repeat="option in options | filter:$select.search">
-                    {{option}}
-                </ui-select-choices>
-            </ui-select>
+        <div class="col-sm-6" >
+            <div ng-class="criterium.selected.length > 1 ? 'input-group' : ''">
+                <div class="input-group-btn" ng-show="criterium.selected.length > 1">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">{{criterium.selectedOperator}}&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-left" role="menu" >
+                        <li><a ng-click="criterium.selectedOperator='AND'">AND</a></li>
+                        <li><a ng-click="criterium.selectedOperator='OR'">OR&nbsp;</a></li>
+                    </ul>
+                </div>
+                <ui-select multiple ng-model="criterium.selected" >
+                    <ui-select-match placeholder="Select">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="option in options | filter:$select.search">
+                        {{option}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
         </div>
-        <div ng-if="criterium.selected.length > 1" class="col-sm-2 col-lg-1">
+
+        <!--<div ng-if="criterium.selected.length > 1" class="col-sm-2 col-lg-1">
             <select class="form-control" ng-model="criterium.selectedOperator">
                 <option>AND</option>
                 <option>OR</option>
             </select>
-        </div>
+        </div>-->
         <div class="col-sm-2 col-lg-1">
             <div class="btn btn-default btn-xs" ng-click="plus();" ng-show="$last"><span class="glyphicon glyphicon-plus"></span></div>
             <div class="btn btn-default btn-xs" ng-click="minus($index);" ng-show="criteria.length > 1"><span class="glyphicon glyphicon-minus"></span></div>

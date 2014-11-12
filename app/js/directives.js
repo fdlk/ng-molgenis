@@ -68,6 +68,7 @@ angular.module('molgenis.directives', []).
                             console.log(data);
                             scope.options = ["label1", "label2"];
                         });
+
                 }
             }
         };

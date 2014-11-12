@@ -1,4 +1,4 @@
-<div ng-repeat="criterium in criteria">
+<div ng-repeat="criterium in criteria" class="row">
     <div class="col-md-12 form-group">
         <label class="control-label col-sm-3"><span ng-if="$first">{{label}}({{type}})</span></label>
         <!-- from-to directive here
@@ -38,12 +38,6 @@
             </div>
         </div>
 
-        <!--<div ng-if="criterium.selected.length > 1" class="col-sm-2 col-lg-1">
-            <select class="form-control" ng-model="criterium.selectedOperator">
-                <option>AND</option>
-                <option>OR</option>
-            </select>
-        </div>-->
         <div class="col-sm-2 col-lg-1">
             <div class="btn btn-default btn-xs" ng-click="plus();" ng-show="$last"><span class="glyphicon glyphicon-plus"></span></div>
             <div class="btn btn-default btn-xs" ng-click="minus($index);" ng-show="criteria.length > 1"><span class="glyphicon glyphicon-minus"></span></div>
